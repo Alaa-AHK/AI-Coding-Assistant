@@ -23,12 +23,12 @@ graph TD
     Classifier -->|Code Explanation| Route1[Route 1: Code Explanation]
     Classifier -->|Code Generation| Route2[Route 2: Code Generation]
     
-    subgraph Route 1: Explanation Pipeline (No RAG)
+    subgraph Route1_Pipe ["Route 1: Explanation Pipeline (No RAG)"]
         Route1 --> LLMDirect[LLM Code Analyzer]
         LLMDirect --> OutputExplain[Explanation Response]
     end
 
-    subgraph Route 2: Generation Pipeline (RAG + Evaluation)
+    subgraph Route2_Pipe ["Route 2: Generation Pipeline (RAG + Evaluation)"]
         Route2 --> RAGRetrieve[2. RAG Top-k Retrieval]
         RAGRetrieve --> VectorDB[(Chroma Vector DB)]
         VectorDB --> RAGRetrieve
