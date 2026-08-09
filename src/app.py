@@ -8,15 +8,80 @@ st.set_page_config(
     layout='wide'
 )
 
-# Custom styling
+# Ultra-Premium Custom Styling
 st.markdown("""
 <style>
-    .stApp {
-        background-color: #0E1117;
-        color: #FAFAFA;
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+    
+    html, body, [class*="css"] {
+        font-family: 'Outfit', sans-serif;
     }
+    
+    /* Main Background with gradient mesh */
+    .stApp {
+        background: radial-gradient(circle at 15% 50%, rgba(73, 56, 133, 0.15), transparent 25%),
+                    radial-gradient(circle at 85% 30%, rgba(20, 184, 166, 0.15), transparent 25%);
+        background-color: #09090b;
+        color: #f4f4f5;
+    }
+    
+    /* Sidebar Glassmorphism */
+    [data-testid="stSidebar"] {
+        background: rgba(24, 24, 27, 0.6) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Chat Bubbles */
+    [data-testid="stChatMessage"] {
+        background: rgba(39, 39, 42, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+    }
+    [data-testid="stChatMessage"]:hover {
+        transform: translateY(-2px);
+    }
+    
+    /* Input Box */
+    .stChatInputContainer {
+        background: rgba(24, 24, 27, 0.8) !important;
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(20, 184, 166, 0.3) !important;
+        box-shadow: 0 0 15px rgba(20, 184, 166, 0.1) !important;
+    }
+    
+    /* Buttons */
+    .stButton > button {
+        background: linear-gradient(135deg, #14b8a6, #8b5cf6) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        padding: 0.5rem 1rem !important;
+        transition: all 0.3s ease !important;
+    }
+    .stButton > button:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.5) !important;
+    }
+    
+    /* Code Blocks */
     .stCodeBlock {
-        background-color: #1E1E1E !important;
+        border-radius: 8px !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+    }
+    
+    /* Headers */
+    h1, h2, h3 {
+        background: -webkit-linear-gradient(45deg, #14b8a6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 </style>
 """, unsafe_allow_html=True)
