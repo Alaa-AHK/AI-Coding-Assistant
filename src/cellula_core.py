@@ -1,7 +1,7 @@
 """
-Cellula Core — Main orchestrator that ties all components together.
+Cellula Core — Main orchestrator that ties all LangChain-powered components together.
 """
-from huggingface_hub import InferenceClient
+from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
 from src.vector_store import VectorStore
 from src.intent_classifier import IntentClassifier
 from src.code_explainer import CodeExplainer
@@ -13,22 +13,31 @@ from src.code_executor import CodeExecutor
 
 
 class CodingAssistant:
-    """Main orchestrator that ties all components together."""
+    """Main orchestrator that ties all LangChain-powered components together."""
 
     def __init__(self, hf_token: str, model_name: str = 'Qwen/Qwen2.5-7B-Instruct'):
         self.hf_token = hf_token
         self.model_name = model_name
-        self.client = InferenceClient(token=hf_token)
 
+        # LangChain LLM: HuggingFace Inference API via LangChain wrapper
+        llm = HuggingFaceEndpoint(
+            repo_id=model_name,
+            huggingfacehub_api_token=hf_token,
+            max_new_tokens=1500,
+        )
+        self.chat_model = ChatHuggingFace(llm=llm)
+
+        # LangChain-powered vector store
         self.vector_store = VectorStore(
             persist_directory='./chroma_db',
             collection_name='coding_knowledge'
         )
 
-        self.classifier = IntentClassifier(self.client, self.model_name)
-        self.explainer = CodeExplainer(self.client, self.model_name)
-        self.relevance_checker = RelevanceChecker(self.client, self.model_name)
-        self.generator = RAGCodeGenerator(self.client, self.vector_store, self.relevance_checker, self.model_name)
+        # All components now receive the LangChain chat model
+        self.classifier = IntentClassifier(self.chat_model)
+        self.explainer = CodeExplainer(self.chat_model)
+        self.relevance_checker = RelevanceChecker(self.chat_model)
+        self.generator = RAGCodeGenerator(self.chat_model, self.vector_store, self.relevance_checker)
         self.learner = FeedbackLearner(self.vector_store)
         self.memory = ConversationMemory()
         self.executor = CodeExecutor()
