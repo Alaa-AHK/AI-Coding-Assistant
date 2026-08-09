@@ -74,9 +74,19 @@ Cellula fulfills 10 core functional requirements designed for production-grade c
 Cellula Project/
 ├── src/
 │   ├── __init__.py
-│   ├── vector_store.py
-│   ├── cellula_core.py
-│   └── app.py
+│   ├── intent_classifier.py      # Intent classification (EXPLAIN vs GENERATE)
+│   ├── code_explainer.py         # LLM-based code explanation
+│   ├── relevance_checker.py      # Checks if retrieved context is relevant
+│   ├── rag_generator.py          # RAG-based code generation pipeline
+│   ├── feedback_learner.py       # Learns from user-provided solutions
+│   ├── conversation_memory.py    # Manages conversation history
+│   ├── code_executor.py          # Sandboxed code execution
+│   ├── vector_store.py           # ChromaDB vector database wrapper
+│   ├── cellula_core.py           # Main orchestrator (CodingAssistant)
+│   └── app.py                    # Streamlit web UI
+├── assets/
+│   ├── demo_screenshot.png
+│   └── explain_screenshot.png
 ├── notebooks/
 │   └── Cellula_AI_Coding_Assistant.ipynb
 ├── scripts/
