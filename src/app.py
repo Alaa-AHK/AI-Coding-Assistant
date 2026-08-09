@@ -24,7 +24,7 @@ st.markdown("""
 with st.sidebar:
     st.title("⚙️ Settings")
     hf_token = st.text_input("Hugging Face API Token", type="password")
-    model_name = st.text_input("Model Name", value="mistralai/Mistral-7B-Instruct-v0.3")
+    model_name = st.text_input("Model Name", value="Qwen/Qwen2.5-7B-Instruct")
     
     if st.button("Clear Conversation"):
         st.session_state.messages = []

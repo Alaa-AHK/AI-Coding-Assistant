@@ -195,7 +195,7 @@ class CodeExecutor:
 class CodingAssistant:
     """Main orchestrator that ties all components together."""
     
-    def __init__(self, hf_token: str, model_name: str = 'mistralai/Mistral-7B-Instruct-v0.3'):
+    def __init__(self, hf_token: str, model_name: str = 'Qwen/Qwen2.5-7B-Instruct'):
         self.hf_token = hf_token
         self.model_name = model_name
         self.client = InferenceClient(token=hf_token)
