@@ -10,6 +10,8 @@
 
 Unlike traditional static AI assistants, Cellula dynamically routes incoming queries based on intent classification, verifies knowledge relevance before generation to prevent hallucinations, maintains long-term conversation memory, executes code in a controlled environment, and learns continuously from human feedback.
 
+![Cellula UI Demo](assets/demo_screenshot.png)
+
 ---
 
 ## 🏗 Architecture Overview
