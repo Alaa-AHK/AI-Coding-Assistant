@@ -24,7 +24,8 @@ class IntentClassifier:
             if 'EXPLAIN' in result:
                 return 'EXPLAIN'
             return 'GENERATE'
-        except Exception:
+        except Exception as e:
+            print(f"⚠️ API Error in IntentClassifier: {e}")
             return 'GENERATE'  # Default to generate
 
 class CodeExplainer:
@@ -62,7 +63,8 @@ class RelevanceChecker:
             )
             result = response.choices[0].message.content.strip().upper()
             return 'TRUE' in result
-        except Exception:
+        except Exception as e:
+            print(f"⚠️ API Error in RelevanceChecker: {e}")
             return False
 
 class RAGCodeGenerator:
