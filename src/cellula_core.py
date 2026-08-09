@@ -77,14 +77,14 @@ class RAGCodeGenerator:
 
     def generate(self, query: str, memory_context: str = '') -> dict:
         results = self.vector_store.search(query, top_k=3)
-        print(f"🔍 [RAG] Searched database. Found {len(results)} documents.")
+        print(f"[RAG] Searched database. Found {len(results)} documents.")
         
         retrieved_context = "\n\n".join([res['content'] for res in results])
         
         is_relevant = False
         if retrieved_context:
             is_relevant = self.relevance_checker.check(query, retrieved_context)
-            print(f"🧠 [Relevance] AI checked the documents and said: {'RELEVANT' if is_relevant else 'NOT RELEVANT'}")
+            print(f"[Relevance] AI checked the documents and said: {'RELEVANT' if is_relevant else 'NOT RELEVANT'}")
             
         if not is_relevant:
             return {
